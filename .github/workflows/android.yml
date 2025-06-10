@@ -44,10 +44,8 @@ jobs:
           link-to-sdk: true
 
       - name: 建置 APK
-        # 如果 buildozer.spec 在 repo 根目錄，就不需要 working-directory
-        # 如果在子資料夾，就改成 working-directory: ./mygame_kivy
+        working-directory: mygame_kivy   # 根據你的專案目錄調整
         run: |
-          buildozer android clean
           buildozer android debug --verbose
 
       - name: 上傳 APK 產物
