@@ -1,0 +1,231 @@
+//修改第一版文案
+{
+  "start_id": 1,
+  "scenes": [
+    {
+      "id": 1,
+      "title": "地下停車場 · 揚醒",
+      "image": "scene_01.jpg",
+      "sound": "bgm_dark_01.mp3",
+      "dialogue_lines": [
+        "你醒來時，四周一片漆黑，空氣中彌漫著霉味與血腥。",
+        "遠處隱約傳來滴答水聲和低沈呻吟，你試圖發聲卻只能發出細微喘息。",
+        "一張散落的病歷卡映入眼簾，上面赫然寫著──「楊醒」。"
+      ],
+      "choices": [
+        {
+          "pattern": "摸索旁邊的手電筒",
+          "next_id": 2
+        },
+        {
+          "pattern": "朝聲音來源前進",
+          "next_id": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "尋找光源",
+      "image": "scene_02.jpg",
+      "sound": "bgm_dark_02.mp3",
+      "dialogue_lines": [
+        "你在口袋裡摸到一只冰冷的金屬棒──手電筒。",
+        "按下開關，黯淡的光束勉強照亮前方，那是一條淌滿積水的長廊。"
+      ],
+      "choices": [
+        {
+          "pattern": "沿著長廊往前走",
+          "next_id": 4
+        },
+        {
+          "pattern": "回頭檢查停車格",
+          "next_id": 5
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "踏向聲音",
+      "image": "scene_03.jpg",
+      "sound": "bgm_dark_03.mp3",
+      "dialogue_lines": [
+        "你的腳步聲迴盪在空蕩的車庫，聲音越走越近，帶著詭異回聲。",
+        "前方，一輛翻倒的車底似乎躲藏著什麼。"
+      ],
+      "choices": [
+        {
+          "pattern": "靠近車底探查",
+          "next_id": 5
+        },
+        {
+          "pattern": "轉身跟著光線前行",
+          "next_id": 2
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "深處回音",
+      "image": "scene_04.jpg",
+      "sound": "bgm_dark_04.mp3",
+      "dialogue_lines": [
+        "手電筒光束穿透黏稠霧氣，你聽到低聲呢喃──「出去……出去……」",
+        "一雙血紅眼睛在暗處閃爍。"
+      ],
+      "choices": [
+        {
+          "pattern": "拿起鐵管抵抗",
+          "next_id": 6
+        },
+        {
+          "pattern": "拔腿狂奔",
+          "next_id": 7
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "車底驚魂",
+      "image": "scene_05.jpg",
+      "sound": "bgm_dark_05.mp3",
+      "dialogue_lines": [
+        "你蹲下靠近車底，一股腐敗惡臭瞬間襲來。",
+        "一隻枯瘦的手伸出，緩緩向你抓來。"
+      ],
+      "choices": [
+        {
+          "pattern": "往後躍開",
+          "next_id": 7
+        },
+        {
+          "pattern": "高聲呼救",
+          "next_id": 8
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "浴血一擊",
+      "image": "scene_06.jpg",
+      "sound": "bgm_dark_battle.mp3",
+      "dialogue_lines": [
+        "你揮舞手中的鐵管，猛烈敲向眼前的陰影。",
+        "對方發出難聽慘叫，跌跌撞撞退回黑暗。"
+      ],
+      "choices": [
+        {
+          "pattern": "追擊黑影",
+          "next_id": 9
+        },
+        {
+          "pattern": "趁機逃跑",
+          "next_id": 7
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "逃出生天？",
+      "image": "scene_07.jpg",
+      "sound": "bgm_chase.mp3",
+      "dialogue_lines": [
+        "你拼命奔向出口，雙腿已經開始顫抖。",
+        "就在門把近在咫尺時，你感到一道冰冷觸手抓住了你……"
+      ],
+      "choices": [
+        {
+          "pattern": "用盡全力掙脫",
+          "next_id": 10
+        },
+        {
+          "pattern": "放棄抵抗，靜待結局",
+          "next_id": 11
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "呼救無人",
+      "image": "scene_08.jpg",
+      "sound": "bgm_dark_06.mp3",
+      "dialogue_lines": [
+        "你的呼救聲在空無一人的車庫中回蕩，但沒有回應。",
+        "黑暗中，觸碰到你衣角的是一把冰冷的刀刃。"
+      ],
+      "choices": [
+        {
+          "pattern": "猛然轉身格擋",
+          "next_id": 6
+        },
+        {
+          "pattern": "閉上眼睛等待",
+          "next_id": 11
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "勝利的曙光",
+      "image": "scene_09.jpg",
+      "sound": "bgm_victory.mp3",
+      "dialogue_lines": [
+        "你一擊命中，陰影轟然倒地，化作一灘黏稠黑水。",
+        "前方出口的門終於緩緩打開，一縷光線透進來。"
+      ],
+      "choices": [
+        {
+          "pattern": "踏出車庫",
+          "next_id": 12
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "最後一搏",
+      "image": "scene_10.jpg",
+      "sound": "bgm_dark_fall.mp3",
+      "dialogue_lines": [
+        "你使出最後一絲力氣掙脫，但掌心已被觸手深深攀住。",
+        "世界瞬間陷入無盡黑暗。"
+      ],
+      "choices": [
+        {
+          "pattern": "接受命運",
+          "next_id": 11
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "深淵終結",
+      "image": "scene_11.jpg",
+      "sound": "bgm_end_dark.mp3",
+      "dialogue_lines": [
+        "你的意識漸漸模糊，最後只剩下心跳停止的回音。",
+        "…遊戲結束。"
+      ],
+      "choices": [
+        {
+          "pattern": "重新開始",
+          "next_id": 1
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "重獲自由",
+      "image": "scene_12.jpg",
+      "sound": "bgm_end_light.mp3",
+      "dialogue_lines": [
+        "你踏出車庫，刺眼陽光令你幾乎張不開眼。",
+        "你深吸一口氣，誓言永遠不再踏進這座詭異的地下停車場。"
+      ],
+      "choices": [
+        {
+          "pattern": "再遊一次",
+          "next_id": 1
+        }
+      ]
+    }
+  ]
+}

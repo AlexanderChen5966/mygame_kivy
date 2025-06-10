@@ -1,0 +1,658 @@
+{
+  "start_id": 1,
+  "scenes": [
+    {
+      "id": 1,
+      "title": "停車場甦醒",
+      "text": "你在昏暗的地下停車場醒來，手上有乾裂的血跡。記憶斷裂，視線模糊，耳中嗡嗡作響。遠處有人聲，你試圖發聲卻只能低吼。一張掉落的病歷卡上寫著你的名字——楊尚瑜。",
+      "hint": "試著輸入：張望、前進、咬人。",
+      "extra_hint": "其他行為也能觸發不同反應。",
+      "triggers": [
+        {
+          "pattern": "張望|四處|環顧",
+          "response": "你努力轉頭，光線閃爍，一團模糊的人影在遠處。",
+          "next_id": 2,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "前進|走|靠近",
+          "response": "你搖晃地邁出步伐，身體本能驅使你靠近聲音來源。",
+          "next_id": 2,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "咬|撲|吃",
+          "response": "你失控衝上去，對方尖叫逃跑。你跌坐地上，確認自己無法控制進食的衝動。",
+          "next_id": 2,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你發出無意義的呻吟，身體仍不聽使喚。",
+          "next_id": 1,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_01.jpg",
+      "sound": "bgm_01.mp3"
+    },
+    {
+      "id": 2,
+      "title": "逃離與壓制",
+      "text": "你追向聲音來源，在即將撲咬時強行壓制自己，撞上牆壁。那名婦人驚慌逃去。你意識到某些行為你還能控制，但對進食的衝動卻毫無抵抗力。",
+      "hint": "搜尋記憶：查看口袋 / 翻找地面",
+      "triggers": [
+        {
+          "pattern": "查看|翻找|口袋|地面",
+          "response": "你在口袋裡摸到一張發黃的照片，是你與一個小女孩的合影。",
+          "next_id": 3,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你翻找落葉與灰塵，發現些殘骸與碎布。",
+          "next_id": 3,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_02.jpg",
+      "sound": "bgm_02.mp3"
+    },
+    {
+      "id": 3,
+      "title": "斷裂街道",
+      "text": "你走上街道，前方是一段塌陷的道路。焦黑的車體與殘火靜靜燃燒，空氣中混合著焦味與寂靜。",
+      "hint": "輸入任何行動，你將繼續向前。",
+      "triggers": [
+        {
+          "pattern": ".*",
+          "response": "你踩著碎裂柏油前行，心中一股熟悉感逐漸浮現。",
+          "next_id": 4,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_03.jpg",
+      "sound": "bgm_03.mp3"
+    },
+    {
+      "id": 4,
+      "title": "廢棄診所",
+      "text": "你走進一間布滿爬藤的廢診所，藥水氣味讓你腦中閃過殘影。診所曾是什麼樣子？你模糊地記得這裡與某段記憶重疊。",
+      "hint": "試著輸入：翻找資料、查看藥櫃",
+      "triggers": [
+        {
+          "pattern": "翻找|查看|資料|藥櫃",
+          "response": "你找到一支沾血的錄音筆與破碎資料夾，熟悉又陌生。",
+          "next_id": 5,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你翻遍診所，除了塵土與枯枝什麼都沒有。",
+          "next_id": 4,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_04.jpg",
+      "sound": "bgm_04.mp3"
+    },
+    {
+      "id": 5,
+      "title": "錄音筆記憶",
+      "text": "你按下錄音筆的開關，一道稚嫩聲音傳來：「爸爸，你說話很奇怪耶……那天媽媽說你不一樣了。」你腦中刺痛，四肢痙攣，情緒洶湧。",
+      "hint": "播放錄音 / 摔碎它 / 呼喊回應",
+      "triggers": [
+        {
+          "pattern": "播放|聽",
+          "response": "你反覆聽著那聲音，回憶與痛苦交織。",
+          "next_id": 6,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "摔|丟",
+          "response": "你將錄音筆摔碎，內心卻湧起更深的空洞。",
+          "next_id": 6,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "喊|回應|我是楊尚瑜",
+          "response": "你沙啞地喊著，聲音顫抖。記憶像閃光般閃現。",
+          "next_id": 6,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你低喃不清，錄音筆沉默。",
+          "next_id": 5,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_05.jpg",
+      "sound": "bgm_05.mp3"
+    },
+    {
+      "id": 6,
+      "title": "遭遇搜捕隊",
+      "text": "就在你失神之際，一隊武裝倖存者現身。他們朝你大喊，語言你已無法理解，但槍口卻清晰對準你。你舉起手，卻又無法阻止內心飢餓的衝動。",
+      "hint": "你可以：掙扎、逃跑、咆哮、靜止。",
+      "triggers": [
+        {
+          "pattern": "掙扎|逃|跑",
+          "response": "你掙脫束縛，撞翻一人逃入街角，心跳如雷。",
+          "next_id": 7,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "咆哮|嚎",
+          "response": "你不受控制地咆哮，對方開火，但你彷彿早已不再在乎。",
+          "next_id": 7,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "靜止|不動",
+          "response": "你任由他們逼近，心中卻異常平靜。你沒有反抗。",
+          "next_id": 7,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你嘗試做點什麼，但子彈已呼嘯而來。",
+          "next_id": 6,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_06.jpg",
+      "sound": "bgm_06.mp3"
+    },
+    {
+      "id": 7,
+      "title": "研究設施",
+      "text": "你在昏迷中醒來，發現自己被束縛於手術台上。玻璃後，一群科學家觀察著你，議論紛紛。他們稱你為『靜語者』，相信你可能是解藥的關鍵。",
+      "hint": "你可以：掙扎、觀察、聆聽。",
+      "triggers": [
+        {
+          "pattern": "掙扎|掙脫",
+          "response": "你拚命掙扎，喚來更多人按住你。你無法離開。",
+          "next_id": 8,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "觀察|看",
+          "response": "你試圖觀察環境，注意到實驗記錄中有你的名字與病歷。",
+          "next_id": 8,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "聆聽|靜聽",
+          "response": "你靜靜傾聽，他們正在討論『記憶重建實驗』。",
+          "next_id": 8,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你試著集中注意，但鎮靜劑讓一切變得模糊。",
+          "next_id": 7,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_07.jpg",
+      "sound": "bgm_07.mp3"
+    },
+    {
+      "id": 8,
+      "title": "實驗逃脫",
+      "text": "實驗設施失控，警報大作。你趁機掙脫，奪門而出。火焰、碎裂玻璃與混亂人聲交織成地獄般景象。你只帶走一樣東西：你的筆記本。",
+      "hint": "輸入：奔跑、找出口、回憶方向。",
+      "triggers": [
+        {
+          "pattern": "奔跑|快走|衝",
+          "response": "你毫不猶豫朝出口狂奔，心中只剩一個目標——回家。",
+          "next_id": 9,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "找|出口",
+          "response": "你尋找通道，在濃煙與鐵門間穿行，終於逃出。",
+          "next_id": 9,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "回憶|家|方向",
+          "response": "你腦中閃現住所的模樣，記憶牽引著你離開實驗地獄。",
+          "next_id": 9,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你徘徊不定，警衛聲音逐漸靠近。",
+          "next_id": 8,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_08.jpg",
+      "sound": "bgm_08.mp3"
+    },
+    {
+      "id": 9,
+      "title": "廢墟徘徊",
+      "text": "你穿越城市廢墟。熟悉又陌生的街道掩藏在瓦礫與殘火後。遠處，是你曾經的家。",
+      "hint": "輸入：向前、找家、辨認建築。",
+      "triggers": [
+        {
+          "pattern": "找家|家|方向",
+          "response": "你沿著記憶前行，那棟老屋就在盡頭。",
+          "next_id": 10,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "辨認|建築|觀察",
+          "response": "你確認環境變化不大，依舊熟悉。",
+          "next_id": 10,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "向前|走",
+          "response": "你緩緩前行，每一步都像踏在回憶上。",
+          "next_id": 10,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你佇立片刻，世界靜得只剩風聲。",
+          "next_id": 9,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_09.jpg",
+      "sound": "bgm_09.mp3"
+    },
+    {
+      "id": 10,
+      "title": "女兒的字跡",
+      "text": "你回到舊居，推門而入。屋內早已斷壁殘垣，但牆上，仍有那熟悉的字句：『爸爸，我知道是你。』你淚流滿面，跪地失聲。",
+      "hint": "你可以：摸牆、哭泣、跪下。",
+      "triggers": [
+        {
+          "pattern": "摸牆|觸碰|撫",
+          "response": "你輕撫那句話，眼前模糊成回憶的顏色。",
+          "next_id": 11,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "哭|痛",
+          "response": "你淚水決堤，喉中傳來類似語音的聲音，像在說：我回來了。",
+          "next_id": 11,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "跪|跪下",
+          "response": "你跪地不起，世界無聲，但你知道——你還活著。",
+          "next_id": 11,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你站立原地，牆上的字閃爍著最後的溫柔。",
+          "next_id": 10,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_10.jpg",
+      "sound": "bgm_10.mp3"
+    },
+    {
+      "id": 11,
+      "title": "殘肢與記憶",
+      "text": "你從一間被火燒過的診所中找到一支錄音筆。裡面錄著一名女孩的聲音：「爸爸，你說話很奇怪耶……那天媽媽說你不一樣了。」你聽著錄音，身體抽搐，記憶在腦中反覆扭曲。你強忍住撕裂般的痛苦，試圖喚回某些東西。",
+      "hint": "你可以輸入：播放錄音、摔掉、模仿聲音、喊出自己的名字。",
+      "extra_hint": "如果你記得自己的名字，也許能喚回什麼。",
+      "triggers": [
+        {
+          "pattern": "播放|按下|聽",
+          "response": "你按下播放鍵，那是你女兒的聲音。熟悉、遙遠、悲傷。",
+          "next_id": 12,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "摔|丟|砸",
+          "response": "你失控地將錄音筆摔到地上，錄音中斷，但聲音依然迴盪在你腦中。",
+          "next_id": -1,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "我是楊尚瑜|說出名字|楊尚瑜",
+          "response": "你顫抖地吐出自己的名字，某種情緒從心底炸裂，你的記憶微微顫動。",
+          "next_id": 12,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "模仿|學女兒|回應女兒",
+          "response": "你艱難地模仿著那熟悉的聲音，喉嚨沙啞，情緒卻奔流而出。",
+          "next_id": 12,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你嘗試發聲，但身體仍處於失控的邊緣。錄音筆靜靜地躺在地上。",
+          "next_id": 11,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_11.jpg",
+      "sound": "bgm_11.mp3"
+    },
+    {
+      "id": 12,
+      "title": "靜語者",
+      "text": "你被一群倖存者制服並帶到一處研究設施。那裡的科學家稱你為「靜語者」——仍保有人類意識的感染者。他們不再恐懼你，而是研究你。你被迫接受一次次實驗，他們播放你過去的錄音、信件、影像，希望喚醒更多記憶。",
+      "hint": "輸入：掙扎、觀察、聆聽、沉默。",
+      "extra_hint": "也許沉默本身就是一種語言。",
+      "triggers": [
+        {
+          "pattern": "掙扎|反抗",
+          "response": "你試圖掙脫，但四肢如鉛，儀器開始發出警報聲。",
+          "next_id": 13,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "觀察|張望",
+          "response": "你注意到一位女科學家看著你，眼神中閃過一絲憐憫。",
+          "next_id": 13,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "聆聽|聽|傾聽",
+          "response": "你靜靜地聆聽，錄音中是你自己對患者進行語言訓練的聲音。",
+          "next_id": 13,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "沉默|不動|不語",
+          "response": "你一動也不動，任憑他們圍繞，內心卻翻騰不已。",
+          "next_id": 13,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你做出本能反應，但沒有人理會。研究人員繼續他們的紀錄與觀察。",
+          "next_id": 12,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_12.jpg",
+      "sound": "bgm_12.mp3"
+    },
+    {
+      "id": 13,
+      "title": "逃脫",
+      "text": "某天研究設施發生騷動，警報聲大作。你趁混亂從拘束中掙脫，穿越實驗室走廊，帶著一份記憶筆記本逃出。外面的世界一片廢墟，但你清楚知道自己要去哪——回家。",
+      "hint": "輸入：翻找筆記、奔跑、確認方向。",
+      "extra_hint": "也許『筆記』裡有重要東西，也許你該立刻動身。",
+      "triggers": [
+        {
+          "pattern": "翻找|筆記|看",
+          "response": "你翻開筆記本，內頁寫著：『回家的路，不在地圖上。』",
+          "next_id": 14,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "奔跑|快跑|逃離|衝",
+          "response": "你毫不猶豫衝出設施，沿著破碎街道奔向記憶中的方向。",
+          "next_id": 14,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "方向|地圖|確認",
+          "response": "你試圖確認位置，但導航早已失效。你只能靠感覺前進。",
+          "next_id": 14,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你躊躇不前，警報聲與槍響越來越近。",
+          "next_id": 13,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_13.jpg",
+      "sound": "bgm_13.mp3"
+    },
+    {
+      "id": 14,
+      "title": "回到舊家",
+      "text": "你穿越廢墟，走進熟悉的社區。那棟斑駁的大樓依舊矗立，門前雜草叢生。你推開門，家中的景象令你停下腳步——牆上，有孩子的蠟筆字跡：『爸爸，如果你回來，我會知道是你，因為你不會傷害我。』你的身體顫抖，眼眶泛白，喉中發出難以分辨的低吼與啜泣。",
+      "hint": "輸入：撫摸牆面、跪下、喊名字、哭泣。",
+      "extra_hint": "如果你還記得為何回來，就試著對她說話。",
+      "triggers": [
+        {
+          "pattern": "撫摸|摸牆|牆",
+          "response": "你輕撫那句話，手指沾染上蠟筆留下的痕跡，彷彿孩子的溫度仍在。",
+          "next_id": 15,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "跪下|跪|崩潰",
+          "response": "你癱坐在地，失聲低吼。淚水與口水混合流下，這一刻無聲卻震撼。",
+          "next_id": 15,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "名字|女兒|喊",
+          "response": "你用沙啞的聲音喊著她的名字，聲音破碎卻誠懇。屋內依舊寂靜。",
+          "next_id": 15,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "哭|痛|淚",
+          "response": "你無法再壓抑，任由情緒洶湧而出。牆上的字跡在淚水中逐漸模糊。",
+          "next_id": 15,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你站立不動，牆上的字彷彿在注視著你。",
+          "next_id": 14,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_14.jpg",
+      "sound": "bgm_14.mp3"
+    },
+    {
+      "id": 15,
+      "title": "聽見",
+      "text": "多年後，營火旁，一群孩子圍著老人聽故事。那故事說有一隻噬語者，不會咬人，只會站在牆邊，比著奇怪的手勢。有人說他是失控的病毒原型，有人說他是靈魂殘留的人類，也有人說，那是個爸爸，在教自己怎麼回家。",
+      "hint": "你可以輸入：靠近營火、追問故事、站起來模仿。",
+      "extra_hint": "那個故事，也許你早已知道結局。",
+      "triggers": [
+        {
+          "pattern": "靠近|走近|聽",
+          "response": "你湊近營火，那聲音令人安心，彷彿來自記憶深處。",
+          "next_id": 16,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "追問|問|故事",
+          "response": "老人停頓片刻，看向遠方說：『有些故事，是人留下的證明。』",
+          "next_id": 16,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "模仿|比手勢|舉手",
+          "response": "你舉起手，照著故事中動作模仿，那瞬間孩子們屏息，火光閃爍不定。",
+          "next_id": 16,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你安靜地坐在一旁，故事繼續，彷彿也在說著你。",
+          "next_id": 15,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_15.jpg",
+      "sound": "bgm_15.mp3"
+    },
+    {
+      "id": 16,
+      "title": "牆上的訊息",
+      "text": "那是間殘破的屋子，牆面寫著四個字：『我還在。』那是他留下的最後一句話，字跡歪斜卻清晰。有人說這是自我找回的證明，有人說那只是未完成的幻象。你佇立在那句話前，意識緩緩裂解。",
+      "hint": "你可以輸入：記住、凝視、轉身離開。",
+      "extra_hint": "也許，你也留下了什麼。",
+      "triggers": [
+        {
+          "pattern": "記住|記",
+          "response": "你默念那四個字，心中泛起難以言喻的情感。",
+          "next_id": 17,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "凝視|看著|盯",
+          "response": "你盯著那句話，直到自己也成了故事的一部分。",
+          "next_id": 17,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "轉身|離開|走",
+          "response": "你轉身離去，牆上的字彷彿還在對你低語。",
+          "next_id": 17,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你停在原地，彷彿已經走到了某種終點。",
+          "next_id": 16,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_16.jpg",
+      "sound": "bgm_16.mp3"
+    },
+    {
+      "id": 17,
+      "title": "結局分歧",
+      "text": "這是你的最後時刻。你記得多少？你曾說過什麼？這些選擇形塑你最後的樣子。請選擇你想走向的終點。",
+      "hint": "輸入：真相 / 偽真 / 永遠遊走。",
+      "extra_hint": "選擇一條你能接受的路。",
+      "triggers": [
+        {
+          "pattern": "真相|回憶|完整",
+          "response": "你選擇面對全部的真相，哪怕痛苦，也不願遺忘。",
+          "next_id": 18,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "偽真|幻象|相信",
+          "response": "你選擇活在記憶構築的幻覺裡，那裡沒有痛苦，只有家。",
+          "next_id": 19,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": "遊走|無解|迷失",
+          "response": "你選擇繼續漫遊在世界邊緣，不尋答案，只留下身影。",
+          "next_id": 20,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        },
+        {
+          "pattern": ".*",
+          "response": "你不選擇任何路，也許你已經知道這些路的終點本就相同。",
+          "next_id": 17,
+          "fx_sound": "Click.ogg",
+          "fx_image": "fx_default.png"
+        }
+      ],
+      "image": "scene_17.jpg",
+      "sound": "bgm_17.mp3"
+    },
+    {
+      "id": 18,
+      "title": "結局A：真相回歸",
+      "text": "你拾起所有破碎的記憶。你是語言治療師，你曾經有家人，你曾經失控，但你選擇面對。你知道你仍然感染，但你決定留下那句話，告訴這個世界——我還在。",
+      "hint": "這是你選擇面對真相的結局。",
+      "triggers": [],
+      "image": "scene_18.jpg",
+      "sound": "bgm_18.mp3"
+    },
+    {
+      "id": 19,
+      "title": "結局B：偽記憶回圈",
+      "text": "你選擇留在記憶建構的幻象中。在那裡，女兒永遠等你，妻子微笑如昔。你知道這不是真實，但這是你能活下去的方式。",
+      "hint": "這是你選擇溫柔虛構的結局。",
+      "triggers": [],
+      "image": "scene_19.jpg",
+      "sound": "bgm_19.mp3"
+    },
+    {
+      "id": 20,
+      "title": "結局C：永遠遊走",
+      "text": "你選擇不回頭，也不留下任何訊息。你在這片破敗的世界中漫遊，像風一般飄盪，像影子一樣徘徊。你不屬於任何地方，只屬於記憶的邊緣。",
+      "hint": "這是你選擇逃避與自由的結局。",
+      "triggers": [],
+      "image": "scene_20.jpg",
+      "sound": "bgm_20.mp3"
+    }
+  ]
+}
