@@ -11,21 +11,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout source code
+      uses: actions/checkout@v2
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: 3.11
 
-    - name: Install dependencies
+    - name: Install system & Python dependencies
       run: |
         sudo apt update
-        sudo apt install -y build-essential ccache unzip openjdk-11-jdk wget
+        sudo apt install -y build-essential ccache unzip openjdk-11-jdk wget \
+                            libffi-dev libssl-dev libtool automake autoconf
         python -m pip install --upgrade pip
         pip install cython buildozer
 
-    - name: Set up Android SDK (via Buildozer)
+    - name: Set JAVA_HOME (optional)
+      run: echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> $GITHUB_ENV
+
+    - name: Initialize Android SDK
       run: |
         mkdir -p ~/.android
         echo "sdk.dir=$HOME/.buildozer/android/platform/android-sdk" > ~/.android/repositories.cfg
