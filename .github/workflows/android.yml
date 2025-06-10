@@ -32,8 +32,8 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install buildozer cython
 
-      - name: 安裝 Android SDK 套件（官方推薦方式）
-        uses: google-github-actions/setup-android@v3
+      - name: 安裝 Android SDK 套件
+        uses: google-github-actions/setup-android@v2
         with:
           components: |
             platform-tools
