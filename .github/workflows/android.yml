@@ -21,11 +21,11 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt install -y build-essential ccache libncurses5 unzip openjdk-11-jdk wget
+        sudo apt install -y build-essential ccache unzip openjdk-11-jdk wget
         python -m pip install --upgrade pip
         pip install cython buildozer
 
-    - name: Install Android SDK and NDK
+    - name: Set up Android SDK (via Buildozer)
       run: |
         mkdir -p ~/.android
         echo "sdk.dir=$HOME/.buildozer/android/platform/android-sdk" > ~/.android/repositories.cfg
