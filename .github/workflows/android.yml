@@ -13,47 +13,45 @@ jobs:
       ANDROID_MINAPI: 21
 
     steps:
-      - name: Checkout repo
+      - name: 檢出程式碼
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: 設定 Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
 
-      - name: Install system deps
+      - name: 安裝系統相依套件
         run: |
           sudo apt-get update
           sudo apt-get install -y zip unzip openjdk-17-jdk python3-pip python3-setuptools \
             libssl-dev libffi-dev
 
-      - name: Install Buildozer & Cython
+      - name: 安裝 Buildozer & Cython
         run: |
           python3 -m pip install --upgrade pip
           pip install buildozer cython
 
-      - name: Setup Android SDK
+      - name: 安裝 Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: |
-            platform-tools
-            build-tools;${{ env.ANDROID_API }}.0.0
-            platforms;android-${{ env.ANDROID_API }}
+          # 一行、空格分隔各個套件
+          packages: "platform-tools build-tools;${{ env.ANDROID_API }}.0.0 platforms;android-${{ env.ANDROID_API }}"
 
-      - name: Setup Android NDK
+      - name: 安裝 Android NDK
         uses: nttld/setup-ndk@v1
         with:
           ndk-version: r25b
           link-to-sdk: true
 
-      - name: Build APK
+      - name: 建置 APK
         run: |
-          # 清理舊中間檔（可选）
+          # （可選）清理舊中間檔
           buildozer android clean
-          # 生成 debug APK
+          # 產生 debug APK
           buildozer android debug --verbose
 
-      - name: Upload APK artifact
+      - name: 上傳 APK 產物
         uses: actions/upload-artifact@v4
         with:
           name: MyKivyGame-debug-apk
