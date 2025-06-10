@@ -44,8 +44,8 @@ jobs:
           link-to-sdk: true
 
       - name: 建置 APK
-        working-directory: mygame_kivy   # 根據你的專案目錄調整
         run: |
+          cd mygame_kivy
           buildozer android debug --verbose
 
       - name: 上傳 APK 產物
