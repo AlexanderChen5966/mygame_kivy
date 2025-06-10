@@ -19,7 +19,7 @@ jobs:
       - name: 設定 Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: 安裝系統相依套件
         run: |
@@ -35,7 +35,6 @@ jobs:
       - name: 安裝 Android SDK
         uses: android-actions/setup-android@v3
         with:
-          # 一行、空格分隔各個套件
           packages: "platform-tools build-tools;${{ env.ANDROID_API }}.0.0 platforms;android-${{ env.ANDROID_API }}"
 
       - name: 安裝 Android NDK
@@ -46,9 +45,7 @@ jobs:
 
       - name: 建置 APK
         run: |
-          # （可選）清理舊中間檔
           buildozer android clean
-          # 產生 debug APK
           buildozer android debug --verbose
 
       - name: 上傳 APK 產物
