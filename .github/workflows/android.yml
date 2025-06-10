@@ -48,6 +48,7 @@ jobs:
 
       - name: 建置 APK
         run: |
+          echo "Buildozer start in $(pwd)"
           buildozer android debug --verbose
 
       - name: 上傳 APK 產物
