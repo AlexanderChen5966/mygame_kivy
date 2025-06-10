@@ -11,7 +11,6 @@ jobs:
     env:
       ANDROID_API: 33
       ANDROID_MINAPI: 21
-      ANDROID_NDK: 25b
 
     steps:
     - name: Checkout repo
@@ -25,8 +24,7 @@ jobs:
     - name: Install system deps
       run: |
         sudo apt-get update
-        sudo apt-get install -y \
-          zip unzip openjdk-17-jdk python3-pip python3-setuptools \
+        sudo apt-get install -y zip unzip openjdk-17-jdk python3-pip python3-setuptools \
           libssl-dev libffi-dev
 
     - name: Install Buildozer & Cython
@@ -34,31 +32,22 @@ jobs:
         python3 -m pip install --upgrade pip
         pip install buildozer cython
 
-    - name: Install Android SDK/NDK
-      uses: android-actions/setup-ndk@v2
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
       with:
-        ndk-version: ${{ env.ANDROID_NDK }}
-    - name: Setup Android SDK Command‐line Tools
-      run: |
-        mkdir -p $HOME/Android/Sdk/cmdline-tools
-        cd $HOME/Android/Sdk/cmdline-tools
-        wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O tools.zip
-        unzip tools.zip
-        mv cmdline-tools latest
-        yes | $HOME/Android/Sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/Android/Sdk \
-          "platform-tools" "platforms;android-${ANDROID_API}" "build-tools;33.0.0"
+        packages: "platform-tools;build-tools;${{ env.ANDROID_API }},platforms;android-${{ env.ANDROID_API }}"
 
-    - name: Configure Buildozer
-      run: |
-        # ensure buildozer.spec is present
-        buildozer init || true
+    - name: Setup Android NDK
+      uses: nttld/setup-ndk@v1
+      with:
+        ndk-version: r25b
+        link-to-sdk: true
 
     - name: Build APK
-      run: |
-        buildozer android debug --quiet
+      run: buildozer android debug --quiet
 
     - name: Upload APK artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MyKivyGame-debug-apk
         path: bin/*.apk
