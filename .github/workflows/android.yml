@@ -32,10 +32,13 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install buildozer cython
 
-      - name: 安裝 Android SDK
-        uses: android-actions/setup-android@v3
+      - name: 安裝 Android SDK 套件（官方推薦方式）
+        uses: google-github-actions/setup-android@v3
         with:
-          packages: "platform-tools build-tools;33.0.2 platforms;android-33"
+          components: |
+            platform-tools
+            build-tools;33.0.2
+            platforms;android-33
 
       - name: 安裝 Android NDK
         uses: nttld/setup-ndk@v1
@@ -45,7 +48,6 @@ jobs:
 
       - name: 建置 APK
         run: |
-          echo "Buildozer start in $(pwd)"
           buildozer android debug --verbose
 
       - name: 上傳 APK 產物
