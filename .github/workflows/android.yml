@@ -18,15 +18,9 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install dependencies
-      run: |
-        pip install --upgrade pip
-        pip install buildozer cython
-
-    - name: Build APK using Buildozer Docker
+    - name: Build APK using Buildozer Docker (Docker Hub)
       run: |
         docker run --rm -v ${{ github.workspace }}:/home/user/hostcwd \
           -w /home/user/hostcwd \
-          ghcr.io/kivy/buildozer:latest \
-          /bin/bash -c "buildozer android debug"
-
+          kivy/buildozer:stable \
+          buildozer android debug
