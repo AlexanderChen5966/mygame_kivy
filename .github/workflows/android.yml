@@ -32,13 +32,10 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install buildozer cython
 
-      - name: 安裝 Android SDK 套件
-        uses: google-github-actions/setup-android@v2
-        with:
-          components: |
-            platform-tools
-            build-tools;33.0.2
-            platforms;android-33
+      - name: 安裝 Android SDK 套件（手動方式）
+        run: |
+          sdkmanager --install "platform-tools" "build-tools;33.0.2" "platforms;android-${{ env.ANDROID_API }}"
+          yes | sdkmanager --licenses
 
       - name: 安裝 Android NDK
         uses: nttld/setup-ndk@v1
