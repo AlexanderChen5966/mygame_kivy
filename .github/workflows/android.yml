@@ -35,7 +35,10 @@ jobs:
       - name: 安裝 Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: "platform-tools build-tools;${{ env.ANDROID_API }}.0.0 platforms;android-${{ env.ANDROID_API }}"
+          packages: |
+            platform-tools
+            build-tools;33.0.2
+            platforms;android-33
 
       - name: 安裝 Android NDK
         uses: nttld/setup-ndk@v1
