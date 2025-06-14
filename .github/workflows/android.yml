@@ -21,14 +21,11 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y openjdk-17-jdk unzip git python3-pip autoconf automake libtool
+          sudo apt install -y openjdk-17-jdk unzip git python3-pip autoconf automake libtool pkg-config
           pip install buildozer cython
 
       - name: Build APK
-        run: |
-          buildozer android update --log-level 2
-          buildozer android debug --log-level 2
-
+        run: buildozer android debug --log-level 2
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
