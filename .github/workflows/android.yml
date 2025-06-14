@@ -1,34 +1,46 @@
-name: Build APK
+name: Build Kivy APK
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
+    - name: Setup Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
 
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y openjdk-17-jdk unzip git python3-pip autoconf automake libtool pkg-config
-          pip install buildozer cython
+    - name: Install system dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y \
+          python3-pip openjdk-17-jdk unzip git zip \
+          libtool libffi-dev libssl-dev autoconf automake cmake \
+          pkg-config zlib1g-dev libncurses5 libncurses5-dev libncursesw5 libstdc++6
 
-      - name: Build APK
-        run: buildozer android debug --log-level 2
+    - name: Install Buildozer and Python dependencies
+      run: |
+        pip install --upgrade pip
+        pip install cython
+        pip install buildozer
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: MyZombieApp-APK
-          path: bin/*.apk
+    - name: Initialize Buildozer (first-time config)
+      run: buildozer android clean
+
+    - name: Build APK
+      run: buildozer android debug
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: myzombieapp-apk
+        path: bin/*.apk
