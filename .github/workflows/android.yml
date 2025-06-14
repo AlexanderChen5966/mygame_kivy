@@ -26,8 +26,8 @@ jobs:
 
       - name: Build APK
         run: |
-          buildozer --log-level 2 android update
-          buildozer --log-level 2 android debug
+          buildozer android update --log-level 2
+          buildozer android debug --log-level 2
 
 
       - name: Upload APK
