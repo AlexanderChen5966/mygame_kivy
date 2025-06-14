@@ -1,16 +1,28 @@
-[app]
-title = MyKivyGame
-package.name = mykivygame
-package.domain = org.example
-source.dir = .
-requirements = python3,kivy,cython
-version = 0.1.0
-orientation = portrait
-fullscreen = 0
 
-[buildozer]
-android.api = 33
-android.minapi = 21
-android.sdk = 33
-android.ndk = 25b
-android.private_storage = True
+[app]
+
+title = MyZombieApp
+package.name = myzombieapp
+package.domain = org.example
+
+source.dir = .
+source.main = main.py
+
+source.include_exts = py,png,jpg,mp3,wav,ogg,json,ttf,otf
+source.include_patterns = assets/*, assets/**/*
+
+version = 1.0
+
+android.api = 30
+android.minapi = 28
+android.sdk = 30
+
+orientation = portrait
+fullscreen = 1
+
+android.permissions = INTERNET
+
+android.python3 = True
+requirements = python3,kivy
+
+android.copy_libs = 1

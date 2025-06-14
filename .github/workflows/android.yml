@@ -1,40 +1,38 @@
-name: Build Kivy APK
+name: Build APK
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main  # 或你想觸發打包的分支
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout source code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
 
-    - name: Install system & Python dependencies
-      run: |
-        sudo apt update
-        sudo apt install -y build-essential ccache unzip openjdk-11-jdk wget \
-                            libffi-dev libssl-dev libtool automake autoconf
-        python -m pip install --upgrade pip
-        pip install cython buildozer
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y openjdk-17-jdk unzip git python3-pip
+          pip install buildozer
 
-    - name: Set JAVA_HOME (optional)
-      run: echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> $GITHUB_ENV
+      - name: Initialize Buildozer (optional if buildozer.spec exists)
+        run: |
+          if [ ! -f buildozer.spec ]; then buildozer init; fi
 
-    - name: Initialize Android SDK
-      run: |
-        mkdir -p ~/.android
-        echo "sdk.dir=$HOME/.buildozer/android/platform/android-sdk" > ~/.android/repositories.cfg
-        yes | buildozer android update
+      - name: Build APK
+        run: buildozer android debug
 
-    - name: Build APK
-      run: buildozer android debug
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: MyZombieApp-APK
+          path: bin/*.apk

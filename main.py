@@ -304,162 +304,419 @@
 
 
 # main.py
+# 改成用選項的版本很成功
+# import os
+# import platform
+# from kivy.app import App
+# from kivy.uix.widget import Widget
+# from kivy.uix.button import Button
+# from kivy.uix.label import Label
+# from kivy.core.audio import SoundLoader
+# from kivy.core.image import Image as CoreImage
+# from kivy.graphics import Rectangle
+# from kivy.config import Config
+# from kivy.core.window import Window
+#
+# # 固定開發解析度
+# Config.set('graphics', 'resizable', False)
+# Config.set('graphics', 'width', '800')
+# Config.set('graphics', 'height', '600')
+#
+# # 動態選字型：Windows 用 msjh, macOS 用系統黑體, 其他平台用預設
+# FONT_FILE = os.path.join("assets", "fonts", "msjh.ttf")
+# from game_logic import START_ID, get_scene_data
+#
+#
+# class GameWidget(Widget):
+#     def __init__(self, **kwargs):
+#         super().__init__(**kwargs)
+#         self.current_state = START_ID
+#
+#         # 背景貼圖、文字 Label、按鈕、音樂
+#         self.bg_texture = None
+#         self.dialogue_label = None
+#         self.choice_buttons = []
+#         self.sound = None
+#
+#         # 場景標題
+#         self.title_label = Label(
+#             text="",
+#             font_size='24sp',
+#             bold=True,
+#             color=(1, 1, 0.8, 1),
+#             size_hint=(None, None),
+#             size=(Window.width, 30),
+#             pos=(0, Window.height - 40),
+#             halign='center',
+#             valign='middle',
+#             font_name=FONT_FILE
+#         )
+#         self.title_label.text_size = (Window.width, None)
+#         self.add_widget(self.title_label)
+#
+#         # 載入第一個場景
+#         self.load_scene(self.current_state)
+#
+#     def load_scene(self, state_id):
+#         # 1. 清除舊有按鈕、停止音樂、移除文字
+#         for btn in self.choice_buttons:
+#             self.remove_widget(btn)
+#         self.choice_buttons.clear()
+#
+#         if self.sound:
+#             self.sound.stop()
+#             self.sound = None
+#
+#         if self.dialogue_label:
+#             self.remove_widget(self.dialogue_label)
+#             self.dialogue_label = None
+#
+#         # 2. 取得場景資料
+#         scene = get_scene_data(state_id)
+#         title_text = scene.get("title", "")
+#         bg_filename = scene.get("bg_image", "")
+#         dialogue_lines = scene.get("dialogue", [])
+#         bgm_filename = scene.get("sound", "")
+#         choices = scene.get("choices", [])
+#
+#         # 3. 更新標題
+#         self.title_label.text = title_text
+#
+#         # 4. 背景貼圖放到 canvas.before
+#         bg_path = os.path.join("assets", "images", bg_filename)
+#         if os.path.isfile(bg_path):
+#             self.bg_texture = CoreImage(bg_path).texture
+#         else:
+#             self.bg_texture = None
+#
+#         self.canvas.before.clear()
+#         if self.bg_texture:
+#             with self.canvas.before:
+#                 Rectangle(texture=self.bg_texture,
+#                           pos=self.pos,
+#                           size=self.size)
+#
+#         # 5. 合併對話並自動換行
+#         text = "\n".join(dialogue_lines)
+#         if text:
+#             lbl = Label(
+#                 text=text,
+#                 font_size='20sp',
+#                 color=(1, 1, 1, 1),
+#                 size_hint=(None, None),
+#                 width=Window.width - 100,            # 留 50px 邊距
+#                 text_size=(Window.width - 100, None),# 自動換行
+#                 halign='left',
+#                 valign='top',
+#                 font_name=FONT_FILE
+#             )
+#             lbl.texture_update()
+#             lbl.height = lbl.texture_size[1]
+#             lbl.pos = (50, Window.height - 80 - lbl.height)
+#             self.add_widget(lbl)
+#             self.dialogue_label = lbl
+#
+#         # 6. 撥放背景音樂
+#         if bgm_filename:
+#             sound_path = os.path.join("assets", "sounds", bgm_filename)
+#             if os.path.isfile(sound_path):
+#                 self.sound = SoundLoader.load(sound_path)
+#                 if self.sound:
+#                     self.sound.loop = True
+#                     self.sound.play()
+#
+#         # 7. 建立按鈕，固定放在畫面下方
+#         btn_w = Window.width * 0.8
+#         btn_h = 40
+#         spacing = 10
+#         # 按鈕從底部 y = 20 開始往上排
+#         current_y = 20
+#         for choice in choices:
+#             next_id = choice.get("next_id")
+#             pattern = choice.get("pattern", "")
+#
+#             btn = Button(
+#                 text=pattern,
+#                 size_hint=(None, None),
+#                 size=(btn_w, btn_h),
+#                 pos=((Window.width - btn_w) / 2, current_y),
+#                 font_size='18sp',
+#                 font_name=FONT_FILE
+#             )
+#             btn.next_id = next_id
+#             btn.bind(on_press=self.on_choice)
+#             self.add_widget(btn)
+#             self.choice_buttons.append(btn)
+#
+#             current_y += btn_h + spacing
+#
+#     def on_choice(self, btn):
+#         # 切換到下一個場景
+#         self.current_state = btn.next_id
+#         self.load_scene(self.current_state)
+#
+#
+# class MyZombieApp(App):
+#     def build(self):
+#         return GameWidget()
+#
+#
+# if __name__ == '__main__':
+#     MyZombieApp().run()
+
+
+
+# 適合手機版的修改
+# import os
+# from kivy.app import App
+# from kivy.uix.floatlayout import FloatLayout
+# from kivy.uix.boxlayout import BoxLayout
+# from kivy.uix.button import Button
+# from kivy.uix.label import Label
+# from kivy.core.audio import SoundLoader
+# from kivy.core.image import Image as CoreImage
+# from kivy.graphics import Rectangle
+# from kivy.core.window import Window
+# from kivy.resources import resource_find  # 用於安全載入資源
+# from game_logic import START_ID, get_scene_data
+#
+# Window.softinput_mode = 'below_target'
+# FONT_FILE = resource_find(os.path.join("assets", "fonts", "NotoSansTC-Regular.ttf"))
+#
+# class GameWidget(FloatLayout):
+#     def __init__(self, **kwargs):
+#         super().__init__(**kwargs)
+#         self.current_state = START_ID
+#         self.bg_rect = None
+#         self.sound = None
+#
+#         # 標題
+#         self.title_label = Label(
+#             text="",
+#             font_size='24sp',
+#             color=(1, 1, 0.8, 1),
+#             size_hint=(1, None),
+#             height=50,
+#             pos_hint={'top': 1},
+#             font_name=FONT_FILE
+#         )
+#         self.add_widget(self.title_label)
+#
+#         # 對話文字
+#         self.dialogue_label = Label(
+#             text="",
+#             font_size='20sp',
+#             color=(1, 1, 1, 1),
+#             size_hint=(0.9, None),
+#             halign='left',
+#             valign='top',
+#             text_size=(Window.width * 0.9, None),
+#             pos_hint={'x': 0.05, 'top': 0.85},
+#             font_name=FONT_FILE
+#         )
+#         self.add_widget(self.dialogue_label)
+#
+#         # 按鈕區域
+#         self.button_box = BoxLayout(
+#             orientation='vertical',
+#             size_hint=(0.9, None),
+#             height=200,
+#             spacing=10,
+#             pos_hint={'center_x': 0.5, 'y': 0.05}
+#         )
+#         self.add_widget(self.button_box)
+#
+#         self.load_scene(self.current_state)
+#
+#     def load_scene(self, state_id):
+#         if self.sound:
+#             self.sound.stop()
+#             self.sound = None
+#
+#         self.button_box.clear_widgets()
+#
+#         scene = get_scene_data(state_id)
+#
+#         # 更新標題
+#         self.title_label.text = scene.get("title", "")
+#
+#         # 背景圖
+#         bg_file = scene.get("bg_image", "")
+#         bg_path = resource_find(os.path.join("assets", "images", bg_file))
+#         self.canvas.before.clear()
+#         if bg_path:
+#             bg_texture = CoreImage(bg_path).texture
+#             with self.canvas.before:
+#                 self.bg_rect = Rectangle(texture=bg_texture, pos=self.pos, size=Window.size)
+#
+#         # 對話
+#         dialogue = "\n".join(scene.get("dialogue", []))
+#         self.dialogue_label.text = dialogue
+#         self.dialogue_label.texture_update()
+#         self.dialogue_label.height = self.dialogue_label.texture_size[1]
+#
+#         # 音樂
+#         sound_file = scene.get("sound", "")
+#         sound_path = resource_find(os.path.join("assets", "sounds", sound_file))
+#         if sound_path:
+#             self.sound = SoundLoader.load(sound_path)
+#             if self.sound:
+#                 self.sound.loop = True
+#                 self.sound.play()
+#
+#         # 按鈕
+#         for choice in scene.get("choices", []):
+#             btn = Button(
+#                 text=choice.get("pattern", ""),
+#                 size_hint=(1, None),
+#                 height=50,
+#                 font_size='18sp',
+#                 font_name=FONT_FILE
+#             )
+#             btn.next_id = choice.get("next_id")
+#             btn.bind(on_press=self.on_choice)
+#             self.button_box.add_widget(btn)
+#
+#     def on_choice(self, instance):
+#         self.current_state = instance.next_id
+#         self.load_scene(self.current_state)
+#
+# class MyZombieApp(App):
+#     def build(self):
+#         return GameWidget()
+#
+# if __name__ == '__main__':
+#     MyZombieApp().run()
 
 import os
-import platform
 from kivy.app import App
-from kivy.uix.widget import Widget
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.core.audio import SoundLoader
 from kivy.core.image import Image as CoreImage
 from kivy.graphics import Rectangle
-from kivy.config import Config
 from kivy.core.window import Window
-
-# 固定開發解析度
-Config.set('graphics', 'resizable', False)
-Config.set('graphics', 'width', '800')
-Config.set('graphics', 'height', '600')
-
-# 動態選字型：Windows 用 msjh, macOS 用系統黑體, 其他平台用預設
-FONT_FILE = os.path.join("assets", "fonts", "msjh.ttf")
+from kivy.resources import resource_find
 from game_logic import START_ID, get_scene_data
 
+# 使用 Noto Sans TC 字型（需放在 assets/fonts/ 資料夾）
+FONT_FILE = resource_find(os.path.join("assets", "fonts", "NotoSansTC-Regular.ttf"))
 
-class GameWidget(Widget):
+class GameWidget(FloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.current_state = START_ID
-
-        # 背景貼圖、文字 Label、按鈕、音樂
-        self.bg_texture = None
-        self.dialogue_label = None
-        self.choice_buttons = []
+        self.bg_rect = None
         self.sound = None
 
-        # 場景標題
+        # 標題
         self.title_label = Label(
             text="",
             font_size='24sp',
-            bold=True,
             color=(1, 1, 0.8, 1),
-            size_hint=(None, None),
-            size=(Window.width, 30),
-            pos=(0, Window.height - 40),
-            halign='center',
-            valign='middle',
+            size_hint=(1, None),
+            height=50,
+            pos_hint={'top': 1},
             font_name=FONT_FILE
         )
-        self.title_label.text_size = (Window.width, None)
         self.add_widget(self.title_label)
 
-        # 載入第一個場景
+        # 對話
+        self.dialogue_label = Label(
+            text="",
+            font_size='20sp',
+            color=(1, 1, 1, 1),
+            size_hint=(0.9, None),
+            halign='left',
+            valign='top',
+            text_size=(Window.width * 0.9, None),
+            pos_hint={'x': 0.05, 'top': 0.85},
+            font_name=FONT_FILE
+        )
+        self.add_widget(self.dialogue_label)
+
+        # 按鈕區
+        self.button_box = BoxLayout(
+            orientation='vertical',
+            size_hint=(0.9, None),
+            height=200,
+            spacing=10,
+            pos_hint={'center_x': 0.5, 'y': 0.05}
+        )
+        self.add_widget(self.button_box)
+
+        # 綁定螢幕尺寸變化
+        Window.bind(size=self.on_window_resize)
+
         self.load_scene(self.current_state)
 
     def load_scene(self, state_id):
-        # 1. 清除舊有按鈕、停止音樂、移除文字
-        for btn in self.choice_buttons:
-            self.remove_widget(btn)
-        self.choice_buttons.clear()
-
         if self.sound:
             self.sound.stop()
             self.sound = None
 
-        if self.dialogue_label:
-            self.remove_widget(self.dialogue_label)
-            self.dialogue_label = None
+        self.button_box.clear_widgets()
 
-        # 2. 取得場景資料
         scene = get_scene_data(state_id)
-        title_text = scene.get("title", "")
-        bg_filename = scene.get("bg_image", "")
-        dialogue_lines = scene.get("dialogue", [])
-        bgm_filename = scene.get("sound", "")
-        choices = scene.get("choices", [])
 
-        # 3. 更新標題
-        self.title_label.text = title_text
+        # 更新標題
+        self.title_label.text = scene.get("title", "")
 
-        # 4. 背景貼圖放到 canvas.before
-        bg_path = os.path.join("assets", "images", bg_filename)
-        if os.path.isfile(bg_path):
-            self.bg_texture = CoreImage(bg_path).texture
-        else:
-            self.bg_texture = None
-
+        # 背景圖
+        bg_file = scene.get("bg_image", "")
+        bg_path = resource_find(os.path.join("assets", "images", bg_file))
         self.canvas.before.clear()
-        if self.bg_texture:
+        if bg_path:
+            bg_texture = CoreImage(bg_path).texture
             with self.canvas.before:
-                Rectangle(texture=self.bg_texture,
-                          pos=self.pos,
-                          size=self.size)
+                self.bg_rect = Rectangle(texture=bg_texture, pos=self.pos, size=Window.size)
 
-        # 5. 合併對話並自動換行
-        text = "\n".join(dialogue_lines)
-        if text:
-            lbl = Label(
-                text=text,
-                font_size='20sp',
-                color=(1, 1, 1, 1),
-                size_hint=(None, None),
-                width=Window.width - 100,            # 留 50px 邊距
-                text_size=(Window.width - 100, None),# 自動換行
-                halign='left',
-                valign='top',
-                font_name=FONT_FILE
-            )
-            lbl.texture_update()
-            lbl.height = lbl.texture_size[1]
-            lbl.pos = (50, Window.height - 80 - lbl.height)
-            self.add_widget(lbl)
-            self.dialogue_label = lbl
+        # 對話
+        dialogue = "\n".join(scene.get("dialogue", []))
+        self.dialogue_label.text = dialogue
+        self.dialogue_label.text_size = (Window.width * 0.9, None)
+        self.dialogue_label.texture_update()
+        self.dialogue_label.height = self.dialogue_label.texture_size[1]
 
-        # 6. 撥放背景音樂
-        if bgm_filename:
-            sound_path = os.path.join("assets", "sounds", bgm_filename)
-            if os.path.isfile(sound_path):
-                self.sound = SoundLoader.load(sound_path)
-                if self.sound:
-                    self.sound.loop = True
-                    self.sound.play()
+        # 音樂
+        sound_file = scene.get("sound", "")
+        sound_path = resource_find(os.path.join("assets", "sounds", sound_file))
+        if sound_path:
+            self.sound = SoundLoader.load(sound_path)
+            if self.sound:
+                self.sound.loop = True
+                self.sound.play()
 
-        # 7. 建立按鈕，固定放在畫面下方
-        btn_w = Window.width * 0.8
-        btn_h = 40
-        spacing = 10
-        # 按鈕從底部 y = 20 開始往上排
-        current_y = 20
-        for choice in choices:
-            next_id = choice.get("next_id")
-            pattern = choice.get("pattern", "")
-
+        # 按鈕
+        for choice in scene.get("choices", []):
             btn = Button(
-                text=pattern,
-                size_hint=(None, None),
-                size=(btn_w, btn_h),
-                pos=((Window.width - btn_w) / 2, current_y),
+                text=choice.get("pattern", ""),
+                size_hint=(1, None),
+                height=50,
                 font_size='18sp',
                 font_name=FONT_FILE
             )
-            btn.next_id = next_id
+            btn.next_id = choice.get("next_id")
             btn.bind(on_press=self.on_choice)
-            self.add_widget(btn)
-            self.choice_buttons.append(btn)
+            self.button_box.add_widget(btn)
 
-            current_y += btn_h + spacing
+    def on_window_resize(self, instance, size):
+        if self.bg_rect:
+            self.bg_rect.size = size
+        if self.dialogue_label:
+            self.dialogue_label.text_size = (size[0] * 0.9, None)
+            self.dialogue_label.texture_update()
+            self.dialogue_label.height = self.dialogue_label.texture_size[1]
 
-    def on_choice(self, btn):
-        # 切換到下一個場景
-        self.current_state = btn.next_id
+    def on_choice(self, instance):
+        self.current_state = instance.next_id
         self.load_scene(self.current_state)
-
 
 class MyZombieApp(App):
     def build(self):
         return GameWidget()
-
 
 if __name__ == '__main__':
     MyZombieApp().run()
