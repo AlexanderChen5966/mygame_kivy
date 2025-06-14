@@ -26,5 +26,5 @@ android.python3 = True
 requirements = python3,kivy
 
 android.copy_libs = 1
-p4a.branch = stable
+p4a.branch = develop
 android.accept_sdk_license = True
