@@ -3,7 +3,7 @@ name: Build APK
 on:
   push:
     branches:
-      - main  # 或你想觸發打包的分支
+      - main  # 或指定你想要自動打包的分支
 
 jobs:
   build:
@@ -24,15 +24,11 @@ jobs:
           sudo apt install -y openjdk-17-jdk unzip git python3-pip
           pip install buildozer
 
-      - name: Initialize Buildozer (optional if buildozer.spec exists)
-        run: |
-          if [ ! -f buildozer.spec ]; then buildozer init; fi
-
       - name: Build APK
         run: buildozer android debug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: MyZombieApp-APK
           path: bin/*.apk
