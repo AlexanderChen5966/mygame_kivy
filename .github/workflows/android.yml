@@ -3,7 +3,7 @@ name: Build APK
 on:
   push:
     branches:
-      - main  # 或指定你想要自動打包的分支
+      - main
 
 jobs:
   build:
@@ -23,6 +23,7 @@ jobs:
           sudo apt update
           sudo apt install -y openjdk-17-jdk unzip git python3-pip
           pip install buildozer
+          pip install cython
 
       - name: Build APK
         run: buildozer android debug
