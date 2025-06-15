@@ -7,7 +7,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-22.04  # 避免 ubuntu-24 自帶新編譯鏈問題
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -22,11 +25,14 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y openjdk-17-jdk unzip git python3-pip \
-                              autoconf automake libtool pkg-config build-essential m4
+                              autoconf automake libtool pkg-config \
+                              build-essential m4
           pip install buildozer cython
 
       - name: Build APK
-        run: buildozer android debug --log-level 2
+        run: |
+          buildozer android clean
+          buildozer android debug --log-level 2
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

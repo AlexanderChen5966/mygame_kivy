@@ -1,4 +1,3 @@
-
 [app]
 
 title = MyZombieApp
@@ -15,7 +14,7 @@ version = 1.0
 
 android.api = 30
 android.minapi = 28
-android.sdk = 30
+android.ndk = 25b
 
 orientation = portrait
 fullscreen = 1
@@ -25,6 +24,7 @@ android.permissions = INTERNET
 android.python3 = True
 requirements = python3,kivy
 
-android.copy_libs = 1
+p4a.url = https://github.com/kivy/python-for-android.git
 p4a.branch = develop
+
 android.accept_sdk_license = True
