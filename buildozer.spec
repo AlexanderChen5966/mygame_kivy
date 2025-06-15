@@ -12,14 +12,14 @@ source.include_patterns = assets/*, assets/**/*
 
 version = 1.0
 
-android.api = 30
-android.minapi = 28
-android.ndk = 25b
-
 orientation = portrait
 fullscreen = 1
 
 android.permissions = INTERNET
+
+android.api = 30
+android.minapi = 28
+android.ndk = 25b
 
 android.python3 = True
 requirements = python3,kivy
@@ -28,3 +28,6 @@ p4a.url = https://github.com/kivy/python-for-android.git
 p4a.branch = develop
 
 android.accept_sdk_license = True
+
+# 避免把標準庫測試檔打包進去
+android.exclude_tests = true
